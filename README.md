@@ -54,10 +54,24 @@ MoodTune is a chat app that turns free-text feelings ("my meeting got cancelled 
 | Build | Vite 5 | Instant dev server, small production bundle |
 | State | Zustand 4 | Minimal store without provider boilerplate |
 | Persistence | IndexedDB via `idb` | Played-track history that survives reloads |
-| LLM | Anthropic Messages API (Claude Sonnet) | Three prompts: emotion extraction, query generation, curation |
+| LLM | Anthropic Messages API, `claude-sonnet-4-6` | Three prompts: emotion extraction, query generation, curation (see [Models](#models)) |
 | Music data | YouTube Data API v3 (`search.list`, category 10 = Music) | Free, no per-user OAuth |
 
 No backend. The app is a static SPA that calls both APIs directly from the browser (see [Limitations](#limitations)).
+
+### Models
+
+| Component | Model | Notes |
+|---|---|---|
+| Emotion agent | `claude-sonnet-4-6` | Hard-coded in `src/services/claudeApi.js`; `max_tokens` 600 |
+| Query agent | `claude-sonnet-4-6` | Same client; `max_tokens` 400 |
+| Ranker agent | `claude-sonnet-4-6` | Same client; `max_tokens` 800 |
+| Music search | YouTube Data API v3 | No ML model; `search.list`, category 10 |
+| **Benchmark (as published)** | **`claude-sonnet-5-5`** | Run through the Claude Code CLI (`--model sonnet` alias). The CLI also makes small internal `claude-haiku-5-5` calls that are not part of the pipeline. |
+
+All three agents use the same model, so no stage is tuned separately. Using a smaller model for the emotion step is an obvious latency and cost experiment.
+
+> **The benchmark did not run on the model the app ships with.** The published numbers come from Sonnet 5.5, while the app is configured for Sonnet 4.6. They are the same family and prompts, but results on 4.6 may differ slightly. Run `node scripts/benchmark.mjs` with an API key to measure the shipped configuration directly.
 
 ---
 
@@ -95,7 +109,7 @@ What the automated checks verify:
 
 ### Caveats on these numbers
 
-- **The model calls ran through the Claude Code CLI, not the raw API.** This was done with `BENCH_VIA_CLI=1` so no API key was needed. Accuracy and adherence results are valid, but **Claude latency includes about 2 s of CLI start-up per call**. Treat the stage latencies as upper bounds. Token totals (about 53k in / 5k out over 27 calls) are also inflated by the CLI's own system prompt. Running `node scripts/benchmark.mjs` with an API key gives direct-API numbers.
+- **The model calls ran through the Claude Code CLI on `claude-sonnet-5-5`, not the raw API and not the app's configured `claude-sonnet-4-6`.** This was done with `BENCH_VIA_CLI=1` so no API key was needed. Accuracy and adherence results are valid, but **Claude latency includes about 2 s of CLI start-up per call**. Treat the stage latencies as upper bounds. Token totals (about 53k in / 5k out over 27 calls) are also inflated by the CLI's own system prompt. Running `node scripts/benchmark.mjs` with an API key gives direct-API numbers.
 - **The sample is small.** 12 mood utterances and 5 scenarios show the pipeline behaves well. They don't establish a statistically robust accuracy figure. The mood labels are unambiguous by design, so real, mixed-emotion messages would score lower.
 - **The one failed check** was the ranker's "max 2 per artist" rule in the Hindi scenario. The check uses YouTube's `channelTitle` as the artist, and Hindi music is dominated by label channels, so one channel can legitimately host several artists. I haven't verified that this is the cause.
 - **There is no measure of "does this playlist feel right".** That's subjective. The benchmark only checks that stated constraints are honoured.

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-24",
-  "model": "sonnet",
+  "model": "claude-sonnet-5-5 (via Claude Code CLI; app default is claude-sonnet-4-6)",
   "moodAccuracy": {
     "correct": 12,
     "total": 12,
@@ -71,7 +71,7 @@
         "Queen We Are the Champions Don't Stop Me Now 70s 80s stadium rock anthem triumphant",
         "Kendrick Lamar Jay-Z hip hop victory anthem hard hitting 2010s bangers",
         "Earth Wind & Fire September Stevie Wonder funk soul upbeat celebration 70s",
-        "Bad Bunny Karol G reggaeton fiesta celebración éxitos upbeat",
+        "Bad Bunny Karol G reggaeton fiesta celebraci\u00f3n \u00e9xitos upbeat",
         "Daft Punk Calvin Harris Avicii euphoric house festival anthem uplifting 2010s"
       ],
       "checks": {
@@ -85,10 +85,10 @@
     {
       "name": "genre+instrumental",
       "queries": [
-        "Erik Satie Gymnopédies Gnossiennes calm solo piano instrumental classical",
-        "Chopin nocturnes slow rainy evening Maria João Pires instrumental classical",
+        "Erik Satie Gymnop\u00e9dies Gnossiennes calm solo piano instrumental classical",
+        "Chopin nocturnes slow rainy evening Maria Jo\u00e3o Pires instrumental classical",
         "Debussy Clair de lune Arabesques impressionist piano Claudio Arrau instrumental classical",
-        "Max Richter Ólafur Arnalds neo-classical modern strings piano calming instrumental classical",
+        "Max Richter \u00d3lafur Arnalds neo-classical modern strings piano calming instrumental classical",
         "Bach Air on the G String Cello Suite No. 1 Yo-Yo Ma slow baroque instrumental classical"
       ],
       "checks": {
@@ -150,7 +150,7 @@
         "latest 2026 bedroom pop heartbreak late night new song lyrics",
         "new 2026 R&B slow emotional lonely night latest single",
         "new 2026 singer-songwriter acoustic folk melancholy rain latest release",
-        "nuevo 2026 balada triste soledad canción nueva lluvia noche"
+        "nuevo 2026 balada triste soledad canci\u00f3n nueva lluvia noche"
       ],
       "checks": {
         "prefVocals": true,
