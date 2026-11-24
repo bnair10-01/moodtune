@@ -1,0 +1,168 @@
+{
+  "date": "2026-11-24",
+  "model": "sonnet",
+  "moodAccuracy": {
+    "correct": 12,
+    "total": 12,
+    "misses": []
+  },
+  "emotionCallMs": {
+    "p50": 2071.8065000000006,
+    "p95": 4183.747708
+  },
+  "pipeline": {
+    "runs": 5,
+    "stageMedianMs": {
+      "emotion": 2055.5651670000007,
+      "queries": 4088.232834000002,
+      "youtube": 496.1496660000048,
+      "rank": 3422.727082999998,
+      "total": 10422.994250000003
+    },
+    "totalMs": [
+      9326,
+      10179,
+      11286,
+      10423,
+      11924
+    ],
+    "candidatePool": [
+      26,
+      29,
+      24,
+      30,
+      15
+    ],
+    "rankedCount": [
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "rankerFallbacks": 0,
+    "checksPassed": 38,
+    "checksTotal": 39,
+    "failedChecks": [
+      "language:rankerMax2PerArtist"
+    ]
+  },
+  "regenGate": {
+    "passed": 6,
+    "total": 6
+  },
+  "usage": {
+    "claudeCalls": 27,
+    "claudeErrors": 0,
+    "inputTokens": 53080,
+    "outputTokens": 5020,
+    "youtubeSearchCalls": 25,
+    "youtubeQuotaUnits": 2500
+  },
+  "perPlaylist": {
+    "claudeCalls": 3,
+    "youtubeSearches": 5,
+    "youtubeQuotaUnits": 500
+  },
+  "runs": [
+    {
+      "name": "baseline-happy",
+      "queries": [
+        "Queen We Are the Champions Don't Stop Me Now 70s 80s stadium rock anthem triumphant",
+        "Kendrick Lamar Jay-Z hip hop victory anthem hard hitting 2010s bangers",
+        "Earth Wind & Fire September Stevie Wonder funk soul upbeat celebration 70s",
+        "Bad Bunny Karol G reggaeton fiesta celebración éxitos upbeat",
+        "Daft Punk Calvin Harris Avicii euphoric house festival anthem uplifting 2010s"
+      ],
+      "checks": {
+        "fiveQueries": true,
+        "noPlaylistWord": true,
+        "rankerMax2PerArtist": true,
+        "rankerNoDupes": true,
+        "rankerReasonsSpecific": true
+      }
+    },
+    {
+      "name": "genre+instrumental",
+      "queries": [
+        "Erik Satie Gymnopédies Gnossiennes calm solo piano instrumental classical",
+        "Chopin nocturnes slow rainy evening Maria João Pires instrumental classical",
+        "Debussy Clair de lune Arabesques impressionist piano Claudio Arrau instrumental classical",
+        "Max Richter Ólafur Arnalds neo-classical modern strings piano calming instrumental classical",
+        "Bach Air on the G String Cello Suite No. 1 Yo-Yo Ma slow baroque instrumental classical"
+      ],
+      "checks": {
+        "prefGenre": true,
+        "prefVocals": true,
+        "fiveQueries": true,
+        "queriesAllInstrumental": true,
+        "queriesAllInGenre": true,
+        "noPlaylistWord": true,
+        "rankerMax2PerArtist": true,
+        "rankerNoDupes": true,
+        "rankerReasonsSpecific": true
+      }
+    },
+    {
+      "name": "language",
+      "queries": [
+        "hindi motivational confidence boost songs Lakshya Zindagi Na Milegi Dobara 2000s bollywood",
+        "hindi calming soothing sufi songs Kun Faya Kun Rahat Fateh Ali Khan slow",
+        "hindi upbeat rock energy song Jo Bhi Main Rockstar Mohit Chauhan 2010s",
+        "hindi indie chill reassuring songs Prateek Kuhad Anuv Jain acoustic",
+        "hindi 90s melodious soothing songs Kumar Sanu Alka Yagnik feel good romantic classics"
+      ],
+      "checks": {
+        "prefLanguage": true,
+        "fiveQueries": true,
+        "queries4of5Language": true,
+        "noPlaylistWord": true,
+        "rankerMax2PerArtist": false,
+        "rankerNoDupes": true,
+        "rankerReasonsSpecific": true
+      }
+    },
+    {
+      "name": "era+genre",
+      "queries": [
+        "90s hip hop gym workout high energy DMX Onyx hardcore rap",
+        "90s east coast hip hop boom bap hype Wu-Tang Clan Mobb Deep Method Man",
+        "90s west coast g-funk hip hop energetic Dr. Dre Snoop Dogg Westside Connection",
+        "90s southern hip hop crunk bounce Three 6 Mafia UGK Master P pump up",
+        "90s hip hop party anthems fast tempo Busta Rhymes Redman Public Enemy workout"
+      ],
+      "checks": {
+        "prefGenre": true,
+        "prefEra": true,
+        "fiveQueries": true,
+        "queriesAllInGenre": true,
+        "queriesAllInEra": true,
+        "noPlaylistWord": true,
+        "rankerMax2PerArtist": true,
+        "rankerNoDupes": true,
+        "rankerReasonsSpecific": true
+      }
+    },
+    {
+      "name": "new-releases+lyrics",
+      "queries": [
+        "new 2026 sad indie pop lonely rainy night latest release soft vocals",
+        "latest 2026 bedroom pop heartbreak late night new song lyrics",
+        "new 2026 R&B slow emotional lonely night latest single",
+        "new 2026 singer-songwriter acoustic folk melancholy rain latest release",
+        "nuevo 2026 balada triste soledad canción nueva lluvia noche"
+      ],
+      "checks": {
+        "prefVocals": true,
+        "prefRecency": true,
+        "fiveQueries": true,
+        "queriesCarryYear": true,
+        "queriesNoInstrumental": true,
+        "noPlaylistWord": true,
+        "rankerMax2PerArtist": true,
+        "rankerNoDupes": true,
+        "rankerReasonsSpecific": true
+      }
+    }
+  ]
+}

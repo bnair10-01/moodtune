@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #0d0d12;
+  --bg-surface: #16162a;
+  --bg-hover: #1e1e30;
+  --border: #2a2a40;
+  --text-primary: #c8c8e8;
+  --text-secondary: #8888aa;
+  --text-muted: #5a5a80;
+  --accent-gold: #EF9F27;
+  --accent-red: #ff4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* Generating spinner dots */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.spinner-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--accent-gold);
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+.spinner-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.spinner-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Emotion badge transitions */
+.emotion-badge * {
+  transition: all 0.4s ease;
+}
+
+/* Intensity bar animation */
+.intensity-bar {
+  transition: width 0.4s ease;
+}
+
+/* Track card hover */
+.track-card {
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+/* Thumbnail fallback */
+.thumb-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* Text truncation */
+.truncate-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
